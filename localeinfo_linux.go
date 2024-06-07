@@ -26,7 +26,7 @@ func NewLocale(name string) (*linuxLocale, error) {
 	clLocale := C.CString(name)
 	defer C.free(unsafe.Pointer(clLocale))
 	l, err := C.newlocale(C.LC_ALL_MASK, clLocale, nil)
-	if err != nil {
+	if l == nil {
 		return nil, err
 	}
 	return &linuxLocale{
