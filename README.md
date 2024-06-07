@@ -1,4 +1,4 @@
-# go-localeinfo [![GoDoc](https://godocs.io/github.com/delthas/go-localeinfo?status.svg)](https://godocs.io/github.com/delthas/go-localeinfo) [![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
+# go-localeinfo [![GoDoc](https://godocs.io/github.com/delthas/go-localeinfo?status.svg)](https://godocs.io/github.com/delthas/go-localeinfo)
 
 A cross-platform library for extracting locale information.
 
@@ -21,8 +21,6 @@ fmt.Printf("123%s456\n", l.ThousandSeparator())
 ## Status
 
 Used in small-scale production environments.
-
-The API could be slightly changed in backwards-incompatible ways for now.
 
 - [ ] Add darwin
 - [ ] Add web
