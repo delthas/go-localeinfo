@@ -28,7 +28,7 @@ type windowsLocale struct {
 
 const bufSize = 1024
 
-func NewLocale(name string) (*windowsLocale, error) {
+func NewLocale(name string) (Locale, error) {
 	var cLocale *uint16
 	if name == "" {
 		// LOCALE_NAME_USER_DEFAULT is NULL

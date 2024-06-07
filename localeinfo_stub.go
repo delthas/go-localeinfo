@@ -6,10 +6,12 @@ import (
 	"time"
 )
 
+var _ Locale = &stubLocale{}
+
 type stubLocale struct {
 }
 
-func NewLocale(name string) (*stubLocale, error) {
+func NewLocale(name string) (Locale, error) {
 	return &stubLocale{}, nil
 }
 

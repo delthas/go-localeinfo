@@ -9,6 +9,7 @@ package localeinfo
 */
 import "C"
 import (
+	"runtime"
 	"sync"
 	"time"
 	"unsafe"
@@ -22,16 +23,20 @@ type linuxLocale struct {
 }
 
 // NewLocale tries creating a new Locale from the specified locale name.
-func NewLocale(name string) (*linuxLocale, error) {
+func NewLocale(name string) (Locale, error) {
 	clLocale := C.CString(name)
 	defer C.free(unsafe.Pointer(clLocale))
 	l, err := C.newlocale(C.LC_ALL_MASK, clLocale, nil)
 	if l == nil {
 		return nil, err
 	}
-	return &linuxLocale{
+	ll := &linuxLocale{
 		locale: l,
-	}, nil
+	}
+	runtime.SetFinalizer(ll, func(l *linuxLocale) {
+		C.freelocale(l.locale)
+	})
+	return ll, nil
 }
 
 func (l *linuxLocale) Encoding() string {
