@@ -10,12 +10,14 @@ func assert(t *testing.T, got string, want string, fmt string) {
 		return
 	}
 	t.Errorf(fmt+": want: %v: got: %v", want, got)
+	t.FailNow()
 }
 
 func TestDateFmt(t *testing.T) {
-	l, err := NewLocale("")
+	l, err := NewLocale("C.UTF-8")
 	if err != nil {
 		t.Errorf("NewLocale: %v", err)
+		return
 	}
 	assert(t, l.DateFormat(), "%m/%d/%y", "DateFormat")
 	assert(t, l.DateTimeFormat(), "%a %b %e %H:%M:%S %Y", "DateTimeFormat")
