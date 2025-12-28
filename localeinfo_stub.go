@@ -1,4 +1,4 @@
-//go:build !cgo || (!linux && !windows)
+//go:build !windows && (!cgo || !linux)
 
 package localeinfo
 
